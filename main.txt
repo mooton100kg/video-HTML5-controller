@@ -1,0 +1,24 @@
+let vd = document.getElementsByTagName("video")[0]
+//vd = document.getElementsByClassName("vjs-tech")[0]
+
+document.addEventListener('keydown', function(event){
+    if(event.code == 'ArrowRight') vd.currentTime += 5
+    else if(event.code == 'ArrowLeft') vd.currentTime -= 5
+    else if(event.code == 'Space'){
+        event.preventDefault()
+        if(vd.paused) vd.play()
+        else vd.pause()
+    }
+    else if(event.code == 'ArrowUp') vd.playbackRate += 0.25
+    else if(event.code == 'ArrowDown') vd.playbackRate -= 0.25
+    else if(event.code == 'Period') vd.currentTime += 15
+    else if(event.code == 'Comma') vd.currentTime -=15
+    else if(event.code == 'BracketRight') vd.currentTime += 30
+    else if(event.code == 'BracketLeft') vd.currentTime -= 30
+    else if(event.code == 'KeyH') alert('ArrowRight/Right = +-5 sec\nSpace = play/pause\n<> = +- 15 sec\nbracket = +- 30 sec\nArrowUp/Down = play speed\nb = bookmark\ng = go to bookmark')
+    else if(event.code == 'KeyB') localStorage.setItem('save vd time', vd.currentTime)
+    else if(event.code == 'KeyG'){
+        let saveT = localStorage.getItem('save vd time')
+        if(saveT != null) vd.currentTime = saveT
+    }
+})
